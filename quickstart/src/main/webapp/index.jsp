@@ -1,10 +1,22 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>quickstart</title>
+    <title>quickstart首页</title>
 </head>
 <body>
-quickstart
-</body>
-</html>
+    <%
+    String username = (String) session.getAttribute("username");
+    if (username != null) {
+        pageContext.setAttribute("username", username);
+%>
+<h3>
+    欢迎你:${username}
+</h3>
+    <%
+} else {
+%>
+<h3>用户未登录</h3>
+<a href="${pageContext.request.contextPath}/">去登陆</a>
+<%
+    }
+%>
